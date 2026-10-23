@@ -19,44 +19,43 @@ body {
 	margin: 0;
 	overflow-x: hidden;
 	background-color: #050505;
-	background-image:
-		radial-gradient(circle, transparent 0.25rem, rgb(255 255 255 / 5%) 0.3rem, transparent 0.36rem),
-		linear-gradient(78deg, transparent 49.7%, rgb(255 255 255 / 3%) 50%, transparent 50.3%);
-	background-position: 0 0, 0 0;
-	background-size: 72px 58px, 122px 88px;
+	background-image: url("image/fundo.png");
 }
 
 .cabecalho {
-	width: min(100% - 3rem, 610px);
+	width: 1098px;
+	height: 38px;
 	margin: 0 auto;
-	padding: 2.5rem 0 2.5rem;
+	padding: 76px 0;
 }
 
 .marca {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.55rem;
-	color: #fff;
-	font-size: 0.93rem;
+	gap: 11px;
+	color: #FFFFFF;
+	font-size: 24px;
 	font-weight: 800;
-	letter-spacing: -0.035em;
+	font-family: "Sora", Arial, Helvetica, sans-serif;
 	text-decoration: none;
 }
 
 .marca-icone {
 	color: #cb79e8;
-	font-size: 1.55rem;
+	font-size: 5px;
 	line-height: 1;
 }
 
 main {
-	width: min(100% - 3rem, 600px);
+	width: 1098px;
+	height: 412px;
 	margin: 0 auto;
 }
 
 .painel-sorteio {
 	display: grid;
-	grid-template-columns: 0.86fr 1fr;
+	grid-template-columns: 2fr 2fr;
+	gap:108px;
 	min-height: 228px;
 }
 
@@ -65,21 +64,22 @@ main {
 	display: flex;
 	min-width: 0;
 	flex-direction: column;
-	padding: 0 0.85rem 0.65rem 0;
+	padding: 0;
 	border-right: 0;
 }
 
 .etiqueta {
 	margin: 0 0 0.35rem;
 	color: #d2d2d2;
-	font-family: monospace;
-	font-size: 0.62rem;
+	font-family: "Roboto Mono", monospace;
+	font-size: 16px;
 	letter-spacing: 0.03em;
 }
 
 .painel-intro h1 {
 	margin: 0;
-	font-size: 2.35rem;
+	font-family: "Sora", Arial, sans-serif;
+	font-size: 72px;
 	font-weight: 850;
 	letter-spacing: -0.07em;
 	line-height: 1.13;
@@ -92,36 +92,33 @@ main {
 	padding-top: 1rem;
 }
 
-.dica {
+.dicas article{
 	display: grid;
 	grid-template-columns: 1rem 1fr;
 	gap: 0.3rem;
 }
 
-.dica-icone {
-	color: #c77be7;
-	font-size: 0.95rem;
-	line-height: 1.1;
-}
-
-.dica h2 {
+.dicas h2 {
 	margin: 0 0 0.15rem;
-	color: #d383ec;
-	font-size: 0.66rem;
+	color: #C58DE7;
+	font-size:14px;
 	font-weight: 500;
+	font-family: "Roboto Flex", Arial, sans-serif;
+	line-height:150%;
 }
 
-.dica p,
+.dicas p,
 .introducao-formulario p {
 	margin: 0;
-	color: #d1d1d1;
-	font-size: 0.61rem;
-	line-height: 1.4;
+	color: #C7C9CC; 
+	font-size: 12px;
+	font-weight: 500;
+	font-family: 'Roboto Flex', Arial, Helvetica, sans-serif;
+	line-height:150%;
 }
 
 .painel-controles {
 	min-width: 0;
-	padding: 1.05rem 0 0 1.7rem;
 }
 
 #form-sorteio {
@@ -193,7 +190,7 @@ main {
 	width: 1rem;
 	height: 1rem;
 	margin: 0;
-	accent-color: #c77be7;
+	accent-color: #C58DE7;
 }
 
 .campo-opcao label {
@@ -207,7 +204,7 @@ button {
 	align-items: center;
 	justify-content: center;
 	gap: 0.65rem;
-	margin: 0 -1px 0 -1.7rem;
+	margin: 0;
 	border: 0;
 	background: #22212b;
 	color: #fff;
@@ -223,7 +220,7 @@ button:hover:not(:disabled) {
 }
 
 button:focus-visible {
-	outline: 2px solid #ce82e8;
+	outline: 2px solid #C58DE7;
 	outline-offset: 3px;
 }
 
@@ -280,7 +277,7 @@ button:disabled {
 	height: 1rem;
 	flex: 0 0 auto;
 	border: 2px solid #554260;
-	border-top-color: #ce82e8;
+	border-top-color: #C58DE7;
 	border-radius: 50%;
 	content: "";
 	animation: girar 650ms linear infinite;
@@ -339,6 +336,7 @@ button:disabled {
 
 	.painel-sorteio {
 		grid-template-columns: 1fr;
+		gap: 2rem;
 	}
 
 	.painel-intro {
