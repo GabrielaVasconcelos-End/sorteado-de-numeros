@@ -209,6 +209,7 @@ button {
 	background: #22212b;
 	color: #fff;
 	font: inherit;
+	font-family: "Roboto Flex", Arial, sans-serif;
 	font-size: 0.66rem;
 	font-weight: 800;
 	cursor: pointer;
@@ -326,59 +327,160 @@ button:disabled {
 
 @media (max-width: 680px) {
 	.cabecalho {
-		width: min(100% - 2rem, 520px);
-		padding: 1.5rem 0 2rem;
+		width: auto;
+		height: auto;
+		padding: 44px 35px 46px;
+		text-align: center;
 	}
 
 	main {
-		width: min(100% - 2rem, 520px);
+		width: auto;
+		height: auto;
+		margin: 0 35px;
+		padding-bottom: 44px;
 	}
 
+	/* Uma coluna só, na ordem do Figma: título, formulário e dicas */
 	.painel-sorteio {
-		grid-template-columns: 1fr;
-		gap: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		min-height: 0;
 	}
 
+	/* Os filhos da .painel-intro passam a ser itens da .painel-sorteio,
+	   assim as dicas podem ir para o final com "order" */
 	.painel-intro {
-		min-height: 320px;
-		padding: 0 1.25rem 1.5rem;
-		border-right: 0;
-		border-bottom: 0;
+		display: contents;
+	}
+
+	.etiqueta {
+		order: 1;
+		margin: 0 0 8px;
+		line-height: 1.5;
 	}
 
 	.painel-intro h1 {
-		font-size: clamp(2.6rem, 12vw, 4rem);
+		order: 2;
+		margin: 0 0 42px;
+		font-size: 40px;
+		letter-spacing: -0.04em;
+		line-height: 1.3;
 	}
 
 	.painel-controles {
-		padding: 1.5rem 1.25rem 0;
+		order: 3;
+	}
+
+	.painel-intro > .dicas {
+		order: 4;
+		gap: 36px;
+		margin-top: 80px;
+		padding-top: 0;
+	}
+
+	.dicas article {
+		grid-template-columns: 20px 1fr;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.dicas h2 {
+		margin: 0;
+	}
+
+	#form-sorteio {
+		gap: 40px;
+	}
+
+	.introducao-formulario h2 {
+		margin: 0 0 2px;
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 1.5;
+	}
+
+	.introducao-formulario p {
+		max-width: none;
+		color: #d9d9d9;
+		font-size: 14px;
 	}
 
 	.campos-numericos {
+		grid-template-columns: repeat(3, minmax(0, 86px));
+		gap: 12px;
 		max-width: none;
-		gap: 0.55rem;
+	}
+
+	.campo-formulario {
+		gap: 8px;
 	}
 
 	.campo-formulario label {
-		font-size: 0.68rem;
+		color: #c7c9cc;
+		font-size: 16px;
+		line-height: 1.5;
+		text-align: center;
 	}
 
 	.campo-formulario input {
-		font-size: 1.15rem;
+		height: 56px;
+		padding: 4px 8px;
+		border-radius: 8px;
+		background: #111012;
+		font-size: 32px;
+		font-weight: 700;
+		appearance: textfield;
+		-moz-appearance: textfield;
+	}
+
+	/* Esconde as setinhas do input number, que tiram o número do centro */
+	.campo-formulario input::-webkit-inner-spin-button,
+	.campo-formulario input::-webkit-outer-spin-button {
+		margin: 0;
+		-webkit-appearance: none;
+	}
+
+	/* No Figma o toggle fica a 20px dos campos, e não a 40px */
+	.campo-opcao {
+		gap: 8px;
+		margin-top: -20px;
+	}
+
+	.campo-opcao label {
+		color: #fff;
+		font-size: 12px;
+		line-height: 1.5;
 	}
 
 	button {
-		margin: 0 -1.25rem;
+		height: 56px;
+		gap: 8px;
+		border-radius: 8px;
+		background: #24222e;
+		font-size: 16px;
+		font-weight: 700;
+		line-height: 1.5;
 	}
 }
 
 @media (max-width: 370px) {
+	.cabecalho {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+
+	main {
+		margin: 0 20px;
+	}
+
 	.painel-intro h1 {
-		font-size: 2.35rem;
+		font-size: 36px;
 	}
 
 	.campos-numericos {
-		gap: 0.4rem;
+		gap: 8px;
 	}
 }
 
