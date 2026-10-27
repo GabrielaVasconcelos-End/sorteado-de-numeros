@@ -378,37 +378,56 @@ button:disabled {
 	list-style: none;
 }
 
+/* O número: só o texto, que nunca gira */
 .numero-sorteado {
+	position: relative;
+	isolation: isolate; /* mantém o quadrado roxo "preso" atrás deste número */
 	display: grid;
-	width: 2.35rem;
-	height: 2.35rem;
+	width: 64px;
+	height: 64px;
 	place-items: center;
-	border: 0;
-	border-radius: 50%;
-	background: #171719;
-	color: #fff;
-	font-size: 0.95rem;
-	font-weight: 800;
-	animation: aparecer 420ms both;
-	animation-delay: calc(var(--indice) * 55ms);
+	color: #C58DE7;
+	font-family: "Roboto mono", Arial, sans-serif;
+	font-size: 48px;
+	font-weight: 700;
+	animation: numero-cor 2s both;
+	animation-delay: calc(var(--indice) * 300ms);
 }
 
-@keyframes girar {
-	to {
-		transform: rotate(360deg);
-	}
+/* O quadrado roxo atrás do número: é ele que gira */
+.numero-sorteado::before {
+	position: absolute;
+	inset: 0; /* ocupa o mesmo espaço do número */
+	z-index: -1; /* fica atrás do texto */
+	border-radius: 12px;
+	background: #C58DE7;
+	content: "";
+	animation: quadrado-girar 2s both;
+	animation-delay: inherit; /* usa o mesmo atraso do número */
 }
 
-@keyframes aparecer {
-	from {
-		transform: scale(0.65) translateY(0.3rem);
-		opacity: 0;
-	}
-	to {
-		transform: scale(1) translateY(0);
-		opacity: 1;
-	}
+/* Fases 1 a 5: o quadrado aparece, gira, balança e some */
+@keyframes quadrado-girar {
+	0%   { transform: scale(0) rotate(0deg); opacity: 1; }
+	10%  { transform: scale(1) rotate(0deg); }
+	20%  { transform: scale(1) rotate(20deg); }
+	30%  { transform: scale(1) rotate(45deg); }  /* losango */
+	45%  { transform: scale(1) rotate(20deg); }
+	55%  { transform: scale(1) rotate(0deg); }
+	65%  { transform: scale(1) rotate(-20deg); }
+	75%  { transform: scale(1) rotate(10deg); }
+	85%  { transform: scale(1) rotate(0deg); opacity: 1; }
+	100% { transform: scale(0.6) rotate(0deg); opacity: 0; }  /* some */
 }
+
+/* O texto: invisível, depois escuro em cima do roxo, e por fim roxo */
+@keyframes numero-cor {
+	0%, 35% { color: transparent; }
+	40%     { color: #111012; }
+	85%     { color: #111012; }
+	100%    { color: #C58DE7; }
+}
+
 
 @media (max-width: 680px) {
 	.cabecalho {
