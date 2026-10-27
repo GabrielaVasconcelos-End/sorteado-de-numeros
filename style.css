@@ -263,8 +263,9 @@ button {
 	justify-content: center;
 	gap: 0.65rem;
 	margin: 0;
-	border: 0;
-	background: #22212b;
+	border: 1px solid transparent; /* borda invisível, para o gradiente aparecer no hover */
+	border-radius: 8px;
+	background: #111012;
 	color: #fff;
 	font: inherit;
 	font-family: "Roboto Flex", Arial, sans-serif;
@@ -274,8 +275,26 @@ button {
 	transition: background-color 160ms ease, color 160ms ease;
 }
 
+/* Registra o ângulo do gradiente como um ângulo de verdade,
+   assim o navegador consegue animá-lo aos poucos */
+@property --angulo-borda {
+	syntax: "<angle>";
+	initial-value: 135deg;
+	inherits: false;
+}
+
+/* hover: contorno gradiente com as cores girando em volta do botão */
 button:hover:not(:disabled) {
-	background: #302d3e;
+	background:
+		linear-gradient(#111012, #111012) padding-box,
+		linear-gradient(var(--angulo-borda), #77C0AF 0%, #D1DC97 14.84%, #E9A9B3 32.15%, #D586E0 65.79%, #91A1FA 84.58%) border-box;
+	animation: girar-borda 3s linear infinite;
+}
+
+@keyframes girar-borda {
+	to {
+		--angulo-borda: 495deg; /* 135deg + uma volta inteira (360deg) */
+	}
 }
 
 button:focus-visible {
