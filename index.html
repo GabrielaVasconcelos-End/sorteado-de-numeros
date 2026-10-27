@@ -74,11 +74,13 @@
 						<p id="mensagem-erro" class="mensagem-erro" role="alert" hidden></p>
 					</form>
 
-					<section class="secao-resultado" aria-labelledby="titulo-resultado">
-						<h2 id="titulo-resultado">RESULTADO</h2>
-						<div id="resultado" class="resultado" aria-live="polite" aria-atomic="true">
-							<p class="resultado-vazio">Seus números sorteados aparecerão aqui.</p>
-						</div>
+					<section id="secao-resultado" class="secao-resultado" aria-labelledby="titulo-resultado" hidden>
+						<h2 id="titulo-resultado">RESULTADO DO SORTEIO</h2>
+						<p id="contador-sorteios" class="contador-sorteios">1º RESULTADO</p>
+						<div id="resultado" class="resultado" aria-live="polite" aria-atomic="true"></div>
+						<button type="button" id="botao-sortear-novamente">
+						SORTEAR NOVAMENTE <img src="image/Refazer.svg" alt="" aria-hidden="true" />
+						</button>
 					</section>
 				</div>
 			</section>

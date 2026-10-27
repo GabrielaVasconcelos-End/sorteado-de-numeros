@@ -8,6 +8,12 @@ const opcaoSemRepeticao = document.querySelector("#nao-repetir");
 const mensagemErro = document.querySelector("#mensagem-erro");
 const areaResultado = document.querySelector("#resultado");
 const botaoSortear = formulario.querySelector('button[type="submit"]');
+const secaoResultado = document.querySelector("#secao-resultado");
+const contadorSorteios = document.querySelector("#contador-sorteios");
+const botaoSortearNovamente = document.querySelector("#botao-sortear-novamente");
+// Conta quantos sorteios já foram feitos, para mostrar "1º RESULTADO", "2º RESULTADO"...
+let totalSorteios = 0;
+
 
 // Mostra um aviso e leva o cursor até o campo que precisa ser corrigido.
 // Assim, a pessoa sabe o que aconteceu e onde deve mexer.
@@ -159,21 +165,50 @@ formulario.addEventListener("submit", (evento) => {
 
 	// Todas as conferências passaram: agora podemos fazer o sorteio.
 	const numerosSorteados = gerarNumeros(quantidade, minimo, maximo, semRepeticao);
-	// Desativamos o botão durante a animação para evitar vários cliques seguidos.
-	botaoSortear.disabled = true;
+	// Contamos mais um sorteio e atualizamos o texto.
+totalSorteios += 1;
+contadorSorteios.textContent = `${totalSorteios}º RESULTADO`;
+
+// Escondemos o formulário e mostramos a área de resultado no lugar.
+formulario.hidden = true;
+secaoResultado.hidden = false;
+
+// Desativamos o botão durante a animação para evitar cliques seguidos.
+botaoSortearNovamente.disabled = true;
+areaResultado.classList.add("sorteando");
+areaResultado.replaceChildren(Object.assign(document.createElement("p"), {
+	className: "mensagem-sorteando",
+	textContent: "Sorteando seus números...",
+}));
+
+window.setTimeout(() => {
+	exibirResultado(numerosSorteados);
+	botaoSortearNovamente.disabled = false;
+	// O botão "Sortear" sumiu, então levamos o foco para o novo botão.
+	// Assim, quem usa o teclado não fica "perdido" na página.
+	botaoSortearNovamente.focus();
+}, 700);
+
 	areaResultado.classList.add("sorteando");
 	// Mostramos uma mensagem temporária enquanto o círculo de espera gira.
 	areaResultado.replaceChildren(Object.assign(document.createElement("p"), {
 		className: "mensagem-sorteando",
 		textContent: "Sorteando seus números...",
 	}));
-
+	
 	// Depois de um pequeno momento, trocamos a mensagem pelos números sorteados.
 	window.setTimeout(() => {
 		exibirResultado(numerosSorteados);
 		// Liberamos o botão para que a pessoa possa sortear de novo.
 		botaoSortear.disabled = false;
 	}, 700);
+});
+
+// Volta para o formulário, com os valores que a pessoa já tinha digitado.
+botaoSortearNovamente.addEventListener("click", () => {
+	secaoResultado.hidden = true;
+	formulario.hidden = false;
+	campoQuantidade.focus();
 });
 
 // Se um campo for editado depois de um erro, removemos o aviso da tela.
